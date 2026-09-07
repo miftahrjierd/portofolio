@@ -209,6 +209,7 @@ body {
   margin: 0 auto 12px auto;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center top;
   border: 3px solid var(--clr-primary);
   display: block;
   transition: transform 0.3s ease, box-shadow 0.3s ease;

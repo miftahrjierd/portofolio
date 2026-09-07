@@ -162,22 +162,26 @@
            Menggunakan repeat(auto-fit, minmax(160px, 1fr)) agar kolom otomatis menyesuaikan lebar -->
       <div class="thumbnail-grid">
 
-        <!-- Kartu Proyek 1: Reservasi Lapangan Badminton -->
+        <!-- Kartu Proyek 1: Sistem Reservasi
+             <article>: elemen semantik HTML5 untuk konten yang berdiri sendiri -->
         <article class="thumb-card">
           <!-- Placeholder thumbnail: div dengan background gradient.
-               Class thumb-1 → gradient ungu-biru di CSS. -->
+               Class thumb-1 → gradient ungu-biru di CSS.
+               aria-hidden="true" → disembunyikan dari screen reader.
+               Ditambahkan emoji label di dalam thumbnail agar lebih informatif. -->
           <div class="thumb-img thumb-1" aria-hidden="true">
-            <span class="thumb-label">🏸</span>
+            <span class="thumb-label"></span>
           </div>
           <!-- h5: judul proyek -->
-          <h5>Reservasi Lapangan Badminton</h5>
-          <p class="small text-muted mb-2" style="font-size: 0.85rem; line-height: 1.3;">Sistem informasi booking &amp; reservasi jadwal lapangan badminton berbasis web.</p>
+          <h5>Sistem Reservasi</h5>
           <!-- badge bg-info: badge Bootstrap berwarna cyan, text-dark agar teks tetap gelap -->
           <span class="badge bg-info text-dark">PHP · MySQL</span>
-          <div class="mt-2">
-            <a href="https://github.com/miftahrjierd/badminton" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip"
-              title="Lihat repositori GitHub Reservasi Lapangan Badminton">GitHub Repo ↗</a>
-          </div>
+          <!-- btn btn-sm btn-outline-primary: tombol Bootstrap kecil, outline biru.
+               data-bs-toggle="tooltip" → mengaktifkan tooltip Bootstrap saat hover.
+               title → teks yang muncul pada tooltip.
+               Tooltip adalah komponen Bootstrap tambahan (poin 6 instruksi). -->
+          <button class="btn btn-sm btn-outline-primary mt-2" data-bs-toggle="tooltip"
+            title="Lihat detail proyek Sistem Reservasi">Detail</button>
         </article>
 
         <!-- Kartu Proyek 2: Dashboard Statistik -->
@@ -325,7 +329,7 @@
           <strong>GitHub:</strong>
           <!-- target="_blank" → buka di tab baru.
                rel="noopener noreferrer" → keamanan: mencegah tab baru mengakses window.opener -->
-          <a href="https://github.com/miftahrjierd" target="_blank" rel="noopener noreferrer">github.com/miftahrjierd</a>
+          <a href="https://github.com/miftah" target="_blank" rel="noopener noreferrer">github.com/miftah</a>
         </li>
         <li class="list-group-item">
           <span class="contact-icon">💼</span>
