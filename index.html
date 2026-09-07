@@ -1,0 +1,374 @@
+<!-- Deklarasi tipe dokumen HTML5, memberi tahu browser untuk merender halaman dalam mode standar -->
+<!DOCTYPE html>
+
+<!-- Elemen root HTML. lang="id" menandakan bahasa konten adalah Bahasa Indonesia,
+     berguna untuk aksesibilitas dan SEO -->
+<html lang="id">
+
+<head>
+  <!-- Mengatur encoding karakter ke UTF-8 agar mendukung semua karakter (huruf, simbol, emoji) -->
+  <meta charset="UTF-8">
+
+  <!-- Meta viewport: membuat halaman responsif di perangkat mobile.
+     width=device-width  → lebar halaman = lebar layar perangkat
+     initial-scale=1.0   → skala awal 1:1 (tidak dizoom) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Meta description: deskripsi singkat halaman untuk mesin pencari (SEO).
+       Muncul sebagai cuplikan di hasil pencarian Google. Idealnya 150-160 karakter. -->
+  <meta name="description"
+    content="Portofolio Miftah — Mahasiswa Sistem Informasi Universitas Negeri Semarang. Menampilkan proyek, keahlian, dan informasi kontak.">
+
+  <!-- Judul halaman yang muncul di tab browser -->
+  <title>Portofolio Miftah</title>
+
+  <!-- Memuat CSS Bootstrap 5.3.3 dari CDN (Content Delivery Network).
+     Bootstrap hanya dipakai untuk mempercantik elemen kecil (button, badge, alert, progress, card, list-group),
+     BUKAN untuk struktur layout. Layout tetap pakai CSS Grid buatan sendiri. -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Memuat file CSS custom buatan sendiri (style.css) untuk layout grid,
+     warna, animasi, dan styling utama halaman -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- Body: elemen yang berisi seluruh konten yang tampil di browser.
+     Di style.css, body ini dijadikan CSS Grid container dengan 5 area:
+     header, nav, sidebar, main, footer -->
+
+<body>
+
+  <!-- ===== HEADER =====
+       Area paling atas halaman. Menampilkan nama dan identitas pemilik portofolio.
+       Class "site-header" dipetakan ke grid-area: header di CSS,
+       sehingga header membentang penuh (2 kolom) di baris pertama grid. -->
+  <header class="site-header">
+    <!-- h1: Heading level 1, judul utama halaman. Hanya boleh ada 1 h1 per halaman (SEO best practice) -->
+    <h1>Miftah</h1>
+    <!-- Paragraf sub-judul berisi identitas mahasiswa -->
+    <p>Mahasiswa Sistem Informasi Universitas Negeri Semarang</p>
+  </header>
+
+  <!-- ===== NAVIGASI UTAMA =====
+       Elemen <nav> adalah elemen semantik HTML5 khusus untuk navigasi.
+       Class "site-nav" dipetakan ke grid-area: nav di CSS,
+       sehingga navigasi membentang penuh di baris kedua grid. -->
+  <nav class="site-nav">
+    <!-- ul (unordered list): daftar menu navigasi, di CSS ditampilkan horizontal dengan flexbox -->
+    <ul>
+      <!-- Setiap li berisi link anchor (#) yang mengarah ke section di halaman yang sama.
+           href="#tentang"  → menuju elemen dengan id="tentang"
+           href="#proyek"   → menuju elemen dengan id="proyek"
+           href="#keahlian" → menuju elemen dengan id="keahlian"
+           href="#kontak"   → menuju elemen dengan id="kontak" -->
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#proyek">Proyek</a></li>
+      <li><a href="#keahlian">Keahlian</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== SIDEBAR =====
+       Elemen <aside> adalah elemen semantik HTML5 untuk konten sampingan/pelengkap.
+       Class "sidebar" dipetakan ke grid-area: sidebar di CSS,
+       sehingga sidebar muncul di kolom kiri (lebar 240px) di bawah navigasi. -->
+  <aside class="sidebar">
+    <!-- Kartu profil: menampilkan avatar, nama, dan badge info singkat -->
+    <div class="profile-card">
+      <!-- Avatar: foto profil ditampilkan dalam lingkaran.
+           src="profile.jpg" → file gambar foto profil.
+           alt="Foto Miftah" → teks alternatif untuk aksesibilitas (screen reader)
+           dan jika gambar gagal dimuat. -->
+      <img class="avatar" src="profile.jpg" alt="Foto Miftah">
+      <!-- h3: sub-heading untuk nama di sidebar -->
+      <h3>Miftah</h3>
+      <!-- mb-2: class Bootstrap untuk margin-bottom sebesar 0.5rem -->
+      <p class="mb-2">
+        <!-- badge bg-primary: komponen Bootstrap — label kecil berwarna biru -->
+        <span class="badge bg-primary">Sistem Informasi</span>
+        <!-- badge bg-secondary: komponen Bootstrap — label kecil berwarna abu-abu -->
+        <span class="badge bg-secondary">Semester 4</span>
+      </p>
+    </div>
+
+    <!-- Bootstrap Card: komponen kartu dari Bootstrap.
+         Digunakan untuk menampilkan info singkat lokasi.
+         Ini menambah variasi penggunaan Bootstrap (poin 6 instruksi). -->
+    <div class="card mb-3">
+      <!-- card-body: padding otomatis dari Bootstrap -->
+      <div class="card-body">
+        <!-- card-title: heading dalam card Bootstrap -->
+        <h5 class="card-title">📍 Lokasi</h5>
+        <!-- card-text: teks konten dalam card -->
+        <p class="card-text">Semarang, Jawa Tengah</p>
+      </div>
+    </div>
+
+    <!-- Tautan cepat: shortcut menuju section tertentu -->
+    <h4>Tautan Cepat</h4>
+    <!-- quick-links: di CSS diberi efek hover geser ke kanan -->
+    <ul class="quick-links">
+      <li><a href="#proyek">Lihat Proyek →</a></li>
+      <li><a href="#keahlian">Lihat Keahlian →</a></li>
+      <li><a href="#kontak">Hubungi Saya →</a></li>
+    </ul>
+  </aside>
+
+  <!-- ===== MAIN CONTENT =====
+       Elemen <main> adalah elemen semantik HTML5 untuk konten utama halaman.
+       Class "main-content" dipetakan ke grid-area: main di CSS,
+       sehingga konten utama muncul di kolom kanan (mengisi sisa lebar).
+       Di dalamnya terdapat minimal 2 konten per baris (section Tentang + Proyek). -->
+  <main class="main-content">
+
+    <!-- Bootstrap Alert: komponen notifikasi/informasi dari Bootstrap.
+         alert alert-info   → warna biru muda
+         alert-dismissible  → bisa ditutup oleh pengguna
+         fade show          → animasi fade saat muncul/ditutup
+         Ini menambah variasi penggunaan Bootstrap (poin 6 instruksi). -->
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+      <strong> Selamat datang!</strong> Saya sedang mencari kesempatan magang di bidang pengembangan web.
+      <!-- btn-close: tombol silang Bootstrap untuk menutup alert.
+           data-bs-dismiss="alert" → atribut Bootstrap JS untuk menutup alert saat diklik -->
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
+    </div>
+
+    <!-- Konten 1: Section Tentang Saya
+         id="tentang" → menjadi target anchor link dari navigasi (#tentang).
+         class="content-block fade-in" → di CSS diberi background putih, rounded corner, shadow,
+         dan animasi fade-in saat halaman dimuat -->
+    <section id="tentang" class="content-block fade-in">
+      <!-- h2: heading level 2 untuk judul section.
+           Di CSS, h2 dalam content-block diberi ::before pseudo-element sebagai dekorasi garis vertikal -->
+      <h2>Tentang Saya</h2>
+      <!-- Paragraf deskripsi diri -->
+      <p>
+        Saya mahasiswa Sistem Informasi yang tertarik pada pengembangan web,
+        basis data, dan riset teknologi terapan. Laman ini dibuat sebagai
+        contoh latihan CSS: header, navigasi, konten utama, sidebar, dan
+        footer disusun memakai CSS Grid, dengan sedikit animasi dan sentuhan
+        Bootstrap pada elemen tertentu.
+      </p>
+    </section>
+
+    <!-- Konten 2: Section Proyek — galeri thumbnail
+         Di sini konsep CSS Grid dibuktikan secara visual dengan grid thumbnail
+         yang otomatis menyesuaikan jumlah kolom sesuai lebar layar -->
+    <section id="proyek" class="content-block fade-in">
+      <h2>Proyek</h2>
+      <p>Contoh proyek ditampilkan dalam grid thumbnail yang otomatis menyesuaikan jumlah kolom sesuai lebar layar.</p>
+
+      <!-- thumbnail-grid: Container grid KEDUA (nested grid di dalam grid utama body).
+           Menggunakan repeat(auto-fit, minmax(160px, 1fr)) agar kolom otomatis menyesuaikan lebar -->
+      <div class="thumbnail-grid">
+
+        <!-- Kartu Proyek 1: Reservasi Lapangan Badminton -->
+        <article class="thumb-card">
+          <!-- Placeholder thumbnail: div dengan background gradient.
+               Class thumb-1 → gradient ungu-biru di CSS. -->
+          <div class="thumb-img thumb-1" aria-hidden="true">
+            <span class="thumb-label">🏸</span>
+          </div>
+          <!-- h5: judul proyek -->
+          <h5>Reservasi Lapangan Badminton</h5>
+          <p class="small text-muted mb-2" style="font-size: 0.85rem; line-height: 1.3;">Sistem informasi booking &amp; reservasi jadwal lapangan badminton berbasis web.</p>
+          <!-- badge bg-info: badge Bootstrap berwarna cyan, text-dark agar teks tetap gelap -->
+          <span class="badge bg-info text-dark">PHP · MySQL</span>
+          <div class="mt-2">
+            <a href="https://github.com/miftahrjierd/badminton" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip"
+              title="Lihat repositori GitHub Reservasi Lapangan Badminton">GitHub Repo ↗</a>
+          </div>
+        </article>
+
+        <!-- Kartu Proyek 2: Dashboard Statistik -->
+        <article class="thumb-card">
+          <!-- thumb-2 → gradient hijau-kuning di CSS -->
+          <div class="thumb-img thumb-2" aria-hidden="true">
+            <span class="thumb-label"></span>
+          </div>
+          <h5>Dashboard Statistik</h5>
+          <!-- badge bg-success: badge Bootstrap berwarna hijau -->
+          <span class="badge bg-success">Data Analysis</span>
+          <button class="btn btn-sm btn-outline-primary mt-2" data-bs-toggle="tooltip"
+            title="Lihat detail proyek Dashboard Statistik">Detail</button>
+        </article>
+
+        <!-- Kartu Proyek 3: Desain UX -->
+        <article class="thumb-card">
+          <!-- thumb-3 → gradient pink di CSS -->
+          <div class="thumb-img thumb-3" aria-hidden="true">
+            <span class="thumb-label"></span>
+          </div>
+          <h5>Desain UX</h5>
+          <!-- badge bg-warning: badge Bootstrap berwarna kuning, text-dark agar teks gelap -->
+          <span class="badge bg-warning text-dark">Figma</span>
+          <button class="btn btn-sm btn-outline-primary mt-2" data-bs-toggle="tooltip"
+            title="Lihat detail proyek Desain UX">Detail</button>
+        </article>
+
+        <!-- Kartu Proyek 4: IoT Composting -->
+        <article class="thumb-card">
+          <!-- thumb-4 → gradient hijau-biru di CSS -->
+          <div class="thumb-img thumb-4" aria-hidden="true">
+            <span class="thumb-label"></span>
+          </div>
+          <h5>IoT Composting</h5>
+          <!-- badge bg-danger: badge Bootstrap berwarna merah -->
+          <span class="badge bg-danger">PKM-KC</span>
+          <button class="btn btn-sm btn-outline-primary mt-2" data-bs-toggle="tooltip"
+            title="Lihat detail proyek IoT Composting">Detail</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- Konten 3: Section Keahlian
+         Section tambahan untuk menampilkan keahlian teknis.
+         Menggunakan Bootstrap Progress Bar untuk visualisasi level skill.
+         Ini memenuhi poin 6 instruksi (variasi komponen Bootstrap). -->
+    <section id="keahlian" class="content-block fade-in">
+      <h2>Keahlian</h2>
+      <p>Berikut keahlian teknis yang sedang saya kembangkan:</p>
+
+      <!-- Setiap skill ditampilkan dengan label + progress bar Bootstrap.
+           skill-item: class custom untuk jarak antar skill.
+           progress: komponen Bootstrap container progress bar.
+           progress-bar: komponen Bootstrap bar isian dengan warna dan lebar. -->
+
+      <div class="skill-item">
+        <!-- Label skill: nama di kiri, persentase di kanan (flexbox di CSS) -->
+        <div class="skill-label">
+          <span>HTML &amp; CSS</span>
+          <span>85%</span>
+        </div>
+        <!-- progress: container progress bar Bootstrap.
+             style="height: 10px" → tinggi bar 10 piksel -->
+        <div class="progress" style="height: 10px;">
+          <!-- progress-bar: bar isian Bootstrap.
+               bg-primary → warna biru.
+               role="progressbar" → aksesibilitas (screen reader tahu ini progress bar).
+               style="width: 85%" → lebar bar = 85%.
+               aria-valuenow/min/max → nilai aksesibilitas untuk screen reader -->
+          <div class="progress-bar bg-primary" role="progressbar" style="width: 85%" aria-valuenow="85"
+            aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-label">
+          <span>JavaScript</span>
+          <span>65%</span>
+        </div>
+        <div class="progress" style="height: 10px;">
+          <!-- bg-success → warna hijau -->
+          <div class="progress-bar bg-success" role="progressbar" style="width: 65%" aria-valuenow="65"
+            aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-label">
+          <span>PHP &amp; MySQL</span>
+          <span>70%</span>
+        </div>
+        <div class="progress" style="height: 10px;">
+          <!-- bg-info → warna cyan -->
+          <div class="progress-bar bg-info" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-label">
+          <span>Figma / UI Design</span>
+          <span>60%</span>
+        </div>
+        <div class="progress" style="height: 10px;">
+          <!-- bg-warning → warna kuning -->
+          <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60"
+            aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-label">
+          <span>Python</span>
+          <span>50%</span>
+        </div>
+        <div class="progress" style="height: 10px;">
+          <!-- bg-danger → warna merah -->
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Konten 4: Section Kontak
+         Section kontak yang proper dengan informasi kontak yang jelas.
+         Menggunakan Bootstrap List Group untuk tampilan daftar yang rapi.
+         Sebelumnya id="kontak" ada di footer dan hanya berisi running text. -->
+    <section id="kontak" class="content-block fade-in">
+      <h2>Kontak</h2>
+      <p>Jangan ragu untuk menghubungi saya melalui salah satu kanal berikut:</p>
+
+      <!-- list-group: komponen Bootstrap untuk daftar item yang rapi.
+           list-group-flush → tanpa border luar (lebih bersih).
+           Ini menambah variasi penggunaan Bootstrap (poin 6 instruksi). -->
+      <ul class="list-group list-group-flush contact-list">
+        <li class="list-group-item">
+          <!-- Emoji sebagai ikon sederhana, contact-icon → styling di CSS -->
+          <span class="contact-icon">📧</span>
+          <strong>Email:</strong>
+          <a href="mailto:miftah@students.unnes.ac.id">miftahfaried018@gmail.com</a>
+        </li>
+        <li class="list-group-item">
+          <span class="contact-icon">🐙</span>
+          <strong>GitHub:</strong>
+          <!-- target="_blank" → buka di tab baru.
+               rel="noopener noreferrer" → keamanan: mencegah tab baru mengakses window.opener -->
+          <a href="https://github.com/miftahrjierd" target="_blank" rel="noopener noreferrer">github.com/miftahrjierd</a>
+        </li>
+        <li class="list-group-item">
+          <span class="contact-icon">💼</span>
+          <strong>LinkedIn:</strong>
+          <a href="https://linkedin.com/in/miftah" target="_blank" rel="noopener noreferrer">linkedin.com/in/miftah</a>
+        </li>
+        <li class="list-group-item">
+          <span class="contact-icon">📍</span>
+          <strong>Lokasi:</strong> Semarang, Jawa Tengah
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER =====
+       Elemen <footer> adalah elemen semantik HTML5 untuk bagian bawah halaman.
+       Class "site-footer" dipetakan ke grid-area: footer di CSS (membentang penuh). -->
+  <footer class="site-footer">
+    <!-- Marquee: container untuk efek running text (teks berjalan dari kanan ke kiri).
+         Menggunakan CSS animation @keyframes run-text di style.css -->
+    <div class="marquee">
+      <p>Terima kasih sudah berkunjung, hubungi saya untuk kolaborasi proyek — dibuat dengan HTML, CSS, dan Bootstrap —
+      </p>
+    </div>
+    <!-- Teks hak cipta. &copy; → simbol © -->
+    <p class="copyright">&copy; 2026 Miftah. Contoh laman untuk tugas CSS.</p>
+  </footer>
+
+  <!-- Memuat JavaScript Bootstrap dari CDN.
+     bootstrap.bundle.min.js sudah termasuk Popper.js di dalamnya.
+     Diperlukan untuk fitur interaktif Bootstrap seperti dropdown, modal, tooltip, dsb. -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script untuk menginisialisasi SEMUA tooltip Bootstrap di halaman.
+       document.querySelectorAll('[data-bs-toggle="tooltip"]') → mencari semua elemen
+       yang memiliki atribut data-bs-toggle="tooltip".
+       forEach → untuk setiap elemen, buat instance Bootstrap Tooltip baru.
+       Tanpa inisialisasi ini, tooltip TIDAK akan muncul saat hover. -->
+  <script>
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      .forEach(function (el) { new bootstrap.Tooltip(el); });
+  </script>
+</body>
+
+</html>

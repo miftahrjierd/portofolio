@@ -1,0 +1,575 @@
+/* =========================================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   Mendefinisikan variabel warna agar mudah diubah dari satu tempat.
+   Cukup ganti nilai di :root, dan seluruh halaman ikut berubah.
+   Diakses dengan syntax var(--nama-variabel).
+   ========================================================= */
+:root {
+  --clr-primary:      #2c5282;  /* Biru utama */
+  --clr-primary-dark:  #1f3a5f; /* Biru gelap (header) */
+  --clr-nav-bg:       #16324f;  /* Background navigasi & footer */
+  --clr-text:         #222;     /* Warna teks default */
+  --clr-text-light:   #cbd5e0;  /* Teks terang (footer) */
+  --clr-bg:           #f4f6f8;  /* Background halaman */
+  --clr-card:         #fff;     /* Background kartu/panel */
+  --clr-border:       #e2e8f0;  /* Warna garis pemisah */
+  --clr-accent:       #4a5568;  /* Abu gelap untuk aksen */
+}
+
+/* =========================================================
+   RESET DASAR
+   Menghapus style bawaan browser agar tampilan konsisten
+   di semua browser (Chrome, Firefox, Edge, dll).
+   ========================================================= */
+
+/* box-sizing: border-box → membuat width/height elemen
+   sudah TERMASUK padding dan border. Tanpa ini, padding
+   akan menambah lebar elemen dan merusak layout. */
+* { box-sizing: border-box; }
+
+/* scroll-behavior: smooth → membuat scroll halaman menjadi HALUS
+   saat mengklik anchor link (#tentang, #proyek, dll).
+   Tanpa ini, scroll langsung melompat (jarring/kasar). */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Styling dasar untuk body:
+   margin: 0             → menghapus margin default body (biasanya 8px)
+   font-family           → urutan font: Segoe UI > Roboto > Arial > sans-serif
+                            Browser pilih font pertama yang tersedia
+   color: var(--clr-text) → warna teks default menggunakan CSS variable
+   background: var(--clr-bg) → warna latar menggunakan CSS variable */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--clr-text);
+  background: var(--clr-bg);
+}
+
+/* Menghilangkan garis bawah (underline) pada semua link,
+   dan membuat warna link mengikuti warna teks induknya */
+a { text-decoration: none; color: inherit; }
+
+/* Menghilangkan bullet point, margin, dan padding pada semua list */
+ul { list-style: none; margin: 0; padding: 0; }
+
+/* =========================================================
+   LAYOUT UTAMA — CSS GRID
+   Body dijadikan Grid Container dengan 2 kolom dan 5 area.
+   Ini adalah INTI dari tugas CSS Grid.
+   ========================================================= */
+
+/* display: grid → mengaktifkan CSS Grid pada body.
+
+   grid-template-columns: 240px 1fr →
+   - Kolom 1: sidebar, lebar tetap 240 piksel
+   - Kolom 2: konten utama, 1fr = mengisi SISA lebar layar
+
+   grid-template-areas → memetakan nama area ke posisi grid:
+   Baris 1: "header header"   → header membentang 2 kolom (full width)
+   Baris 2: "nav    nav"      → navigasi membentang 2 kolom (full width)
+   Baris 3: "sidebar main"    → sidebar di kiri, main di kanan
+   Baris 4: "footer footer"   → footer membentang 2 kolom (full width) */
+body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-areas:
+    "header header"
+    "nav    nav"
+    "sidebar main"
+    "footer footer";
+}
+
+/* Masing-masing elemen HTML ditempatkan ke area grid yang sesuai
+   menggunakan properti grid-area. Nama area harus sama dengan
+   yang didefinisikan di grid-template-areas di atas. */
+.site-header   { grid-area: header; }   /* <header> → area "header" */
+.site-nav      { grid-area: nav; }      /* <nav>    → area "nav" */
+.sidebar       { grid-area: sidebar; }  /* <aside>  → area "sidebar" */
+.main-content  { grid-area: main; }     /* <main>   → area "main" */
+.site-footer   { grid-area: footer; }   /* <footer> → area "footer" */
+
+/* =========================================================
+   HEADER
+   Background gradient biru gelap, teks putih.
+   ========================================================= */
+
+/* linear-gradient(120deg, ...) →
+   Background gradien dari biru tua ke biru
+   dengan sudut kemiringan 120 derajat.
+   Menggunakan CSS variable agar warna mudah diganti.
+   text-shadow → bayangan halus pada teks agar lebih kontras di atas gradient */
+.site-header {
+  background: linear-gradient(120deg, var(--clr-primary-dark), var(--clr-primary));
+  color: #fff;
+  padding: 28px 32px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling judul h1 di header:
+   letter-spacing: 0.5px → menambah sedikit jarak antar huruf
+   agar judul terlihat lebih elegan */
+.site-header h1 {
+  margin: 0 0 4px 0;
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+/* Sub-judul di header: opacity 0.85 → sedikit transparan (85%)
+   agar terlihat lebih halus dibanding judul utama */
+.site-header p {
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* =========================================================
+   NAVIGASI
+   Bar navigasi horizontal dengan efek hover dan focus.
+   ========================================================= */
+
+/* Background navigasi menggunakan CSS variable */
+.site-nav {
+  background: var(--clr-nav-bg);
+}
+
+/* display: flex → menyusun item menu secara HORIZONTAL (flexbox).
+   gap: 4px     → jarak antar item menu 4 piksel.
+   padding: 0 24px → ruang dalam kiri-kanan 24px */
+.site-nav ul {
+  display: flex;
+  gap: 4px;
+  padding: 0 24px;
+}
+
+/* Styling link navigasi:
+   display: block → link memenuhi seluruh area li (lebih mudah diklik)
+   color: #d7e3f4 → warna teks biru muda
+   font-weight: 500 → ketebalan font medium
+   border-radius: 4px → sudut sedikit membulat
+   transition → animasi halus 0.25 detik saat hover (perubahan background & warna) */
+.site-nav a {
+  display: block;
+  padding: 12px 16px;
+  color: #d7e3f4;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Efek hover pada link navigasi:
+   Background berubah biru, teks berubah putih */
+.site-nav a:hover {
+  background: var(--clr-primary);
+  color: #fff;
+}
+
+/* :focus-visible → style yang muncul saat link difokuskan via keyboard (Tab).
+   outline → garis tepi putih agar terlihat jelas di background gelap.
+   outline-offset → jarak outline dari tepi elemen.
+   Penting untuk AKSESIBILITAS: pengguna keyboard harus bisa melihat elemen mana yang aktif */
+.site-nav a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  background: var(--clr-primary);
+  color: #fff;
+}
+
+/* =========================================================
+   SIDEBAR
+   Panel kiri berisi profil singkat dan tautan cepat.
+   ========================================================= */
+
+/* Background putih, padding 24px, garis pemisah di sisi kanan.
+   Menggunakan CSS variable untuk warna. */
+.sidebar {
+  background: var(--clr-card);
+  padding: 24px;
+  border-right: 1px solid var(--clr-border);
+}
+
+/* Kartu profil: teks rata tengah, garis pemisah di bawah */
+.profile-card {
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--clr-border);
+  margin-bottom: 16px;
+}
+
+/* Avatar: foto profil ditampilkan dalam lingkaran 96x96 piksel.
+   border-radius: 50%   → membuat kotak menjadi LINGKARAN
+   margin: 0 auto       → menempatkan gambar di TENGAH horizontal
+   object-fit: cover    → gambar memenuhi lingkaran TANPA terdistorsi,
+                           bagian yang tidak muat akan dipotong (crop) otomatis
+   border: 3px solid    → garis tepi biru sebagai bingkai foto
+   transition → animasi halus 0.3 detik untuk efek hover (transform & shadow) */
+.avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 12px auto;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--clr-primary);
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efek hover pada avatar: avatar MEMBESAR sedikit (scale 1.1)
+   dan muncul bayangan biru (glow effect).
+   Ini adalah micro-animation yang meningkatkan kesan interaktif. */
+.avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 16px rgba(44, 82, 130, 0.4);
+}
+
+/* Judul section di sidebar: ukuran kecil, warna abu gelap (dari CSS variable) */
+.sidebar h4 {
+  font-size: 0.95rem;
+  text-transform: none;
+  color: var(--clr-accent);
+  margin-bottom: 8px;
+}
+
+/* Jarak antar item tautan cepat */
+.quick-links li {
+  margin-bottom: 8px;
+}
+
+/* Link tautan cepat: warna biru, font medium.
+   transition → animasi geser ke kanan + perubahan warna saat hover */
+.quick-links a {
+  color: var(--clr-primary);
+  font-weight: 500;
+  transition: padding-left 0.2s ease, color 0.2s ease;
+}
+
+/* Efek hover: link bergeser 6px ke kanan + warna berubah lebih gelap (micro-animation).
+   Memberikan kesan interaktif tanpa animasi berat. */
+.quick-links a:hover {
+  padding-left: 6px;
+  color: var(--clr-primary-dark);
+}
+
+/* =========================================================
+   MAIN CONTENT
+   Area konten utama: berisi section Tentang, Proyek, Keahlian, dan Kontak.
+   ========================================================= */
+
+/* Padding/ruang dalam area konten utama */
+.main-content {
+  padding: 28px 32px;
+}
+
+/* content-block: kartu konten putih dengan sudut membulat.
+   border-radius: 8px → sudut membulat 8 piksel
+   box-shadow → bayangan halus di bawah kartu (efek elevasi/kedalaman).
+   Menggunakan CSS variable untuk warna background */
+.content-block {
+  background: var(--clr-card);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Warna heading di content-block: biru gelap (dari CSS variable).
+   position: relative → diperlukan agar pseudo-element ::before bisa diposisikan.
+   padding-left: 16px → memberi ruang untuk dekorasi garis vertikal di kiri. */
+.content-block h2 {
+  margin-top: 0;
+  color: var(--clr-primary-dark);
+  position: relative;
+  padding-left: 16px;
+}
+
+/* ::before pseudo-element pada h2: membuat GARIS VERTIKAL dekoratif
+   di sebelah kiri judul section.
+   content: ""          → pseudo-element wajib punya content (bisa kosong)
+   position: absolute   → diposisikan relatif terhadap h2 (yang position: relative)
+   left: 0              → menempel di sisi kiri
+   width: 4px           → lebar garis 4 piksel
+   height: 100%         → tinggi mengikuti tinggi h2
+   background           → warna garis biru (dari CSS variable)
+   border-radius         → sudut membulat agar garis tidak kotak sempurna */
+.content-block h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--clr-primary);
+  border-radius: 2px;
+}
+
+/* =========================================================
+   ANIMASI FADE-IN
+   Efek content-block muncul secara perlahan saat halaman dimuat.
+   Class "fade-in" ditambahkan pada section yang ingin diberi efek.
+   ========================================================= */
+
+/* animation: fadeInUp → menjalankan animasi "fadeInUp" selama 0.6 detik.
+   ease-out → animasi cepat di awal, melambat di akhir (terasa natural).
+   both → elemen mempertahankan style dari frame pertama DAN terakhir animasi. */
+.fade-in {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+/* Delay animasi bertingkat: setiap section muncul bergantian.
+   Section pertama (nth-child(2) karena alert = child ke-1) muncul duluan,
+   section berikutnya muncul 0.15 detik setelahnya.
+   Memberikan efek "cascade/bertingkat" yang menarik secara visual. */
+.fade-in:nth-child(2) { animation-delay: 0.1s; }
+.fade-in:nth-child(3) { animation-delay: 0.25s; }
+.fade-in:nth-child(4) { animation-delay: 0.4s; }
+.fade-in:nth-child(5) { animation-delay: 0.55s; }
+
+/* @keyframes fadeInUp: definisi animasi CSS.
+   from (0%):
+     - opacity: 0 → elemen transparan/tidak terlihat
+     - translateY(20px) → elemen berada 20px di BAWAH posisi akhir
+   to (100%):
+     - opacity: 1 → elemen sepenuhnya terlihat
+     - translateY(0) → elemen kembali ke posisi normal
+   Hasilnya: elemen muncul dari bawah sambil menghilangkan transparansi */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Grid thumbnail: GRID KEDUA (nested/bersarang di dalam grid body) ---
+   Ini membuktikan konsep CSS Grid di dalam CSS Grid.
+
+   display: grid → mengaktifkan CSS Grid pada container thumbnail.
+
+   repeat(auto-fit, minmax(160px, 1fr)) →
+   - auto-fit  : jumlah kolom OTOMATIS menyesuaikan lebar container
+   - minmax(160px, 1fr) : tiap kolom MINIMAL 160px, MAKSIMAL 1fr
+   - Jika layar lebar → bisa 4 kolom. Layar sempit → otomatis 2 atau 1 kolom.
+
+   gap: 18px → jarak antar kartu thumbnail */
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+}
+
+/* Kartu thumbnail proyek:
+   transition → animasi halus 0.25 detik untuk efek hover (transform & shadow) */
+.thumb-card {
+  background: #f8fafc;
+  border: 1px solid var(--clr-border);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Efek hover pada kartu thumbnail:
+   translateY(-6px) → kartu NAIK 6 piksel ke atas
+   box-shadow       → bayangan membesar, memberikan efek "melayang" */
+.thumb-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+/* Placeholder gambar thumbnail: kotak dengan tinggi 90px dan sudut membulat.
+   display: flex + align/justify center → menempatkan emoji label di TENGAH. */
+.thumb-img {
+  width: 100%;
+  height: 90px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Label emoji di dalam thumbnail.
+   font-size: 2rem → ukuran besar agar emoji terlihat jelas.
+   filter: drop-shadow → bayangan halus agar emoji "menonjol" dari gradient. */
+.thumb-label {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Masing-masing thumbnail diberi warna gradient BERBEDA sebagai pengganti gambar asli.
+   linear-gradient(135deg, warna1, warna2) → gradient diagonal 135 derajat */
+.thumb-1 { background: linear-gradient(135deg, #667eea, #764ba2); } /* Ungu-biru */
+.thumb-2 { background: linear-gradient(135deg, #22c1c3, #fdbb2d); } /* Hijau-kuning */
+.thumb-3 { background: linear-gradient(135deg, #ff758c, #ff7eb3); } /* Pink */
+.thumb-4 { background: linear-gradient(135deg, #43cea2, #185a9d); } /* Hijau-biru */
+
+/* =========================================================
+   SECTION KEAHLIAN — SKILL PROGRESS BARS
+   Menggunakan Bootstrap Progress Bar + custom styling.
+   ========================================================= */
+
+/* Jarak antar item skill: margin-bottom 18px */
+.skill-item {
+  margin-bottom: 18px;
+}
+
+/* Label skill: flexbox untuk menempatkan nama skill di KIRI
+   dan persentase di KANAN pada satu baris.
+   justify-content: space-between → mendorong elemen ke ujung kiri dan kanan */
+.skill-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--clr-accent);
+}
+
+/* Override border-radius Bootstrap progress bar agar lebih membulat (pill shape) */
+.progress {
+  border-radius: 5px;
+}
+
+/* Menambahkan animasi transition pada lebar progress bar Bootstrap.
+   Saat halaman dimuat, bar terlihat "mengisi" secara halus */
+.progress-bar {
+  transition: width 0.8s ease;
+}
+
+/* =========================================================
+   SECTION KONTAK — LIST GROUP
+   Menggunakan Bootstrap List Group untuk daftar kontak.
+   ========================================================= */
+
+/* Ikon kontak: margin kanan agar ada jarak antara ikon dan teks */
+.contact-icon {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+/* Styling link di daftar kontak: warna biru (dari CSS variable).
+   transition → animasi halus saat warna berubah */
+.contact-list a {
+  color: var(--clr-primary);
+  transition: color 0.2s ease;
+}
+
+/* Hover pada link kontak: warna berubah lebih gelap + muncul underline */
+.contact-list a:hover {
+  color: var(--clr-primary-dark);
+  text-decoration: underline;
+}
+
+/* =========================================================
+   FOOTER + ANIMASI RUNNING TEXT (MARQUEE)
+   Footer dengan efek teks berjalan menggunakan CSS animation.
+   ========================================================= */
+
+/* Background footer: biru sangat gelap (dari CSS variable), teks abu muda */
+.site-footer {
+  background: var(--clr-nav-bg);
+  color: var(--clr-text-light);
+  padding: 16px 0;
+}
+
+/* Container marquee (running text):
+   overflow: hidden    → menyembunyikan teks yang keluar dari batas container
+   white-space: nowrap → mencegah teks turun ke baris baru (harus 1 baris) */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--clr-primary);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+/* Teks di dalam marquee:
+   display: inline-block → agar transform bisa bekerja pada elemen inline
+   padding-left: 100%    → teks DIMULAI dari luar layar (sisi kanan)
+   animation: run-text   → menjalankan animasi "run-text" selama 18 detik,
+                            linear (kecepatan konstan), infinite (berulang terus) */
+.marquee p {
+  display: inline-block;
+  padding-left: 100%;
+  margin: 0;
+  animation: run-text 18s linear infinite;
+}
+
+/* @keyframes run-text: definisi animasi CSS untuk efek running text.
+   from (0%)  : translateX(0)    → posisi awal (kanan layar, karena padding-left: 100%)
+   to   (100%): translateX(-100%) → teks bergerak ke KIRI sejauh 100% lebarnya
+   Hasilnya: teks berjalan terus-menerus dari kanan ke kiri */
+@keyframes run-text {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* Teks copyright: rata tengah, ukuran kecil */
+.copyright {
+  text-align: center;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSIVE — MEDIA QUERIES
+   Mengubah layout agar tampil baik di layar kecil.
+   Media query bekerja dengan mendeteksi LEBAR layar perangkat.
+   ========================================================= */
+
+/* === TABLET KE BAWAH (lebar layar ≤ 768px) ===
+   @media (max-width: 768px) → aturan CSS di dalam blok ini
+   HANYA berlaku jika lebar layar 768 piksel atau kurang. */
+@media (max-width: 768px) {
+
+  /* Layout grid diubah dari 2 kolom menjadi 1 KOLOM.
+     grid-template-columns: 1fr → hanya 1 kolom (full width).
+     Urutan area diubah: sidebar dipindah ke BAWAH main content
+     agar konten utama lebih prioritas dilihat di layar kecil. */
+  body {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "sidebar"
+      "footer";
+  }
+
+  /* flex-wrap: wrap → jika menu navigasi terlalu panjang,
+     item menu bisa TURUN ke baris berikutnya (tidak terpotong) */
+  .site-nav ul {
+    flex-wrap: wrap;
+  }
+
+  /* Thumbnail grid: ukuran minimum kolom dikecilkan dari 160px ke 130px
+     agar lebih banyak kartu muat di layar tablet */
+  .thumbnail-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+}
+
+/* === HP KECIL (lebar layar ≤ 480px) ===
+   Aturan tambahan untuk layar sangat kecil (smartphone). */
+@media (max-width: 480px) {
+
+  /* Padding header dikecilkan agar tidak terlalu boros ruang */
+  .site-header { padding: 20px; }
+
+  /* Ukuran font judul dikecilkan dari 2rem ke 1.5rem */
+  .site-header h1 { font-size: 1.5rem; }
+
+  /* Padding main content dan sidebar dikecilkan */
+  .main-content, .sidebar { padding: 16px; }
+
+  /* Thumbnail grid DIPAKSA menjadi 2 kolom tetap (tidak auto-fit lagi)
+     agar tampilan lebih rapi di layar HP kecil.
+     repeat(2, 1fr) → 2 kolom dengan lebar sama rata */
+  .thumbnail-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
