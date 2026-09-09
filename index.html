@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Portofolio Miftah — Mahasiswa Sistem Informasi Universitas Negeri Semarang. Menampilkan proyek, keahlian, dan informasi kontak.">
+    content="Portofolio Miftah — Mahasiswa Sistem Informasi Universitas Negeri Semarang. Menampilkan proyek dan informasi kontak.">
   <title>Portofolio Miftah</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -14,42 +14,30 @@
 <body>
 
   <header class="site-header">
-    <h1>Miftah</h1>
+    <h1>Halo, Perkenalkan nama saya Miftah Faried</h1>
     <p>Mahasiswa Sistem Informasi Universitas Negeri Semarang</p>
   </header>
 
   <nav class="site-nav">
     <ul>
-      <li><a href="#tentang">Tentang</a></li>
-      <li><a href="#proyek">Proyek</a></li>
-      <li><a href="#keahlian">Keahlian</a></li>
-      <li><a href="#kontak">Kontak</a></li>
     </ul>
   </nav>
 
   <aside class="sidebar">
     <div class="profile-card">
       <img class="avatar" src="profile.jpg" alt="Foto Miftah">
-      <h3>Miftah</h3>
+      <h3>Miftah Faried</h3>
       <p class="mb-2">
-        <span class="badge bg-primary">Sistem Informasi</span>
-        <span class="badge bg-secondary">Semester 4</span>
       </p>
     </div>
 
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">📍 Lokasi</h5>
-        <p class="card-text">Semarang, Jawa Tengah</p>
-      </div>
-    </div>
-
-    <h4>Tautan Cepat</h4>
-    <ul class="quick-links">
-      <li><a href="#proyek">Lihat Proyek →</a></li>
-      <li><a href="#keahlian">Lihat Keahlian →</a></li>
-      <li><a href="#kontak">Hubungi Saya →</a></li>
-    </ul>
+    <nav class="sidebar-nav">
+      <ul class="nav-list">
+        <li><a href="#tentang" class="sidebar-link">Tentang</a></li>
+        <li><a href="#proyek" class="sidebar-link">Proyek</a></li>
+        <li><a href="#kontak" class="sidebar-link">Kontak</a></li>
+      </ul>
+    </nav>
   </aside>
 
   <main class="main-content">
@@ -93,96 +81,39 @@
         </article>
 
         <article class="thumb-card">
-          <div class="thumb-img thumb-2" aria-hidden="true">
-            <span class="thumb-label"></span>
+          <div class="thumb-img overflow-hidden">
+            <img src="arsenalfigma.png" alt="Preview Desain UI/UX Figma Arsenal"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
           </div>
-          <h5>Dashboard Statistik</h5>
-          <span class="badge bg-success">Data Analysis</span>
-          <button class="btn btn-sm btn-outline-primary mt-2" data-bs-toggle="tooltip"
-            title="Lihat detail proyek Dashboard Statistik">Detail</button>
+          <h5>Desain UI/UX</h5>
+          <p class="small text-muted mb-2" style="font-size: 0.85rem; line-height: 1.3;">Prototype interaktif rancangan
+            UI/UX (Design Pertama).</p>
+          <span class="badge bg-warning text-dark mb-2">Figma</span>
+          <div class="d-flex flex-column gap-1 mt-2">
+            <a href="https://www.figma.com/proto/q3hQnAPA1QCTU8B717liGc/Design-pertama?node-id=0-1&t=PX0wO1NSpd5AdIfj-1"
+              target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip"
+              title="Buka Figma Prototype di tab baru">Figma Link ↗</a>
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#figmaModal">
+              Preview Prototype
+            </button>
+          </div>
         </article>
 
         <article class="thumb-card">
-          <div class="thumb-img thumb-3" aria-hidden="true">
-            <span class="thumb-label"></span>
+          <div class="thumb-img overflow-hidden" style="background: #f0ece4; height: 180px;">
+            <img src="ATR-ANTARES.jpg" alt="Preview Robotics ATR-Antares"
+              style="width: 100%; height: 100%; object-fit: contain; border-radius: 6px; padding: 10px;">
           </div>
-          <h5>Desain UX</h5>
-          <span class="badge bg-warning text-dark">Figma</span>
+          <h5>Robotics ATR-Antares</h5>
+          <span class="badge bg-danger">UKM Riptek</span>
           <button class="btn btn-sm btn-outline-primary mt-2" data-bs-toggle="tooltip"
-            title="Lihat detail proyek Desain UX">Detail</button>
+            title="Lihat detail perjalanan Robotics saya di Tim Antares dan UKM Riptek">Detail</button>
         </article>
 
-        <article class="thumb-card">
-          <div class="thumb-img thumb-4" aria-hidden="true">
-            <span class="thumb-label"></span>
-          </div>
-          <h5>IoT Composting</h5>
-          <span class="badge bg-danger">PKM-KC</span>
-          <button class="btn btn-sm btn-outline-primary mt-2" data-bs-toggle="tooltip"
-            title="Lihat detail proyek IoT Composting">Detail</button>
-        </article>
       </div>
     </section>
 
-    <section id="keahlian" class="content-block fade-in">
-      <h2>Keahlian</h2>
-      <p>Berikut keahlian teknis yang sedang saya kembangkan:</p>
 
-      <div class="skill-item">
-        <div class="skill-label">
-          <span>HTML &amp; CSS</span>
-          <span>85%</span>
-        </div>
-        <div class="progress" style="height: 10px;">
-          <div class="progress-bar bg-primary" role="progressbar" style="width: 85%" aria-valuenow="85"
-            aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-
-      <div class="skill-item">
-        <div class="skill-label">
-          <span>JavaScript</span>
-          <span>65%</span>
-        </div>
-        <div class="progress" style="height: 10px;">
-          <div class="progress-bar bg-success" role="progressbar" style="width: 65%" aria-valuenow="65"
-            aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-
-      <div class="skill-item">
-        <div class="skill-label">
-          <span>PHP &amp; MySQL</span>
-          <span>70%</span>
-        </div>
-        <div class="progress" style="height: 10px;">
-          <div class="progress-bar bg-info" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-            aria-valuemax="100"></div>
-        </div>
-      </div>
-
-      <div class="skill-item">
-        <div class="skill-label">
-          <span>Figma / UI Design</span>
-          <span>60%</span>
-        </div>
-        <div class="progress" style="height: 10px;">
-          <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60"
-            aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-
-      <div class="skill-item">
-        <div class="skill-label">
-          <span>Python</span>
-          <span>50%</span>
-        </div>
-        <div class="progress" style="height: 10px;">
-          <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-            aria-valuemax="100"></div>
-        </div>
-      </div>
-    </section>
 
     <section id="kontak" class="content-block fade-in">
       <h2>Kontak</h2>
@@ -190,22 +121,20 @@
 
       <ul class="list-group list-group-flush contact-list">
         <li class="list-group-item">
-          <span class="contact-icon">📧</span>
           <strong>Email:</strong>
           <a href="mailto:miftah@students.unnes.ac.id">miftahfaried018@gmail.com</a>
         </li>
         <li class="list-group-item">
-          <span class="contact-icon">🐙</span>
           <strong>GitHub:</strong>
-          <a href="https://github.com/miftahrjierd" target="_blank" rel="noopener noreferrer">github.com/miftahrjierd</a>
+          <a href="https://github.com/miftahrjierd" target="_blank"
+            rel="noopener noreferrer">github.com/miftahrjierd</a>
         </li>
         <li class="list-group-item">
-          <span class="contact-icon">💼</span>
           <strong>LinkedIn:</strong>
-          <a href="https://linkedin.com/in/miftah" target="_blank" rel="noopener noreferrer">linkedin.com/in/miftah</a>
+          <a href="https://www.linkedin.com/in/miftah-faried-37b7a3286/" target="_blank"
+            rel="noopener noreferrer">linkedin.com/in/miftah-faried-37b7a3286/ </a>
         </li>
         <li class="list-group-item">
-          <span class="contact-icon">📍</span>
           <strong>Lokasi:</strong> Semarang, Jawa Tengah
         </li>
       </ul>
@@ -220,6 +149,30 @@
     </div>
     <p class="copyright">&copy; 2026 Miftah. Contoh laman untuk tugas CSS.</p>
   </footer>
+
+  <div class="modal fade" id="figmaModal" tabindex="-1" aria-labelledby="figmaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="figmaModalLabel"> Pratinjau Desain UI/UX (Figma Prototype)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body p-0" style="height: 600px;">
+          <iframe style="border: none; width: 100%; height: 100%;"
+            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fq3hQnAPA1QCTU8B717liGc%2FDesign-pertama%3Fnode-id%3D0-1%26t%3DPX0wO1NSpd5AdIfj-1"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <a href="https://www.figma.com/proto/q3hQnAPA1QCTU8B717liGc/Design-pertama?node-id=0-1&t=PX0wO1NSpd5AdIfj-1"
+            target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Buka Langsung di Figma ↗
+          </a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

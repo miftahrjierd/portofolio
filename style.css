@@ -1,16 +1,18 @@
 :root {
-  --clr-primary:      #2c5282;
-  --clr-primary-dark:  #1f3a5f;
-  --clr-nav-bg:       #16324f;
-  --clr-text:         #222;
-  --clr-text-light:   #cbd5e0;
-  --clr-bg:           #f4f6f8;
-  --clr-card:         #fff;
-  --clr-border:       #e2e8f0;
-  --clr-accent:       #4a5568;
+  --clr-primary: #233038;
+  --clr-primary-dark: #58656d;
+  --clr-nav-bg: #4a5568;
+  --clr-text: #222;
+  --clr-text-light: #cbd5e0;
+  --clr-bg: #e9ecef;
+  --clr-card: #fff;
+  --clr-border: #e2e8f0;
+  --clr-accent: #4a5568;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 html {
   scroll-behavior: smooth;
@@ -20,12 +22,19 @@ body {
   margin: 0;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   color: var(--clr-text);
-  background: var(--clr-bg);
+  background: linear-gradient(160deg, #b0bec5, #cfd8dc, #b0bec5);
 }
 
-a { text-decoration: none; color: inherit; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-ul { list-style: none; margin: 0; padding: 0; }
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   display: grid;
@@ -37,11 +46,25 @@ body {
     "footer footer";
 }
 
-.site-header   { grid-area: header; }
-.site-nav      { grid-area: nav; }
-.sidebar       { grid-area: sidebar; }
-.main-content  { grid-area: main; }
-.site-footer   { grid-area: footer; }
+.site-header {
+  grid-area: header;
+}
+
+.site-nav {
+  grid-area: nav;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.main-content {
+  grid-area: main;
+}
+
+.site-footer {
+  grid-area: footer;
+}
 
 .site-header {
   background: linear-gradient(120deg, var(--clr-primary-dark), var(--clr-primary));
@@ -62,7 +85,7 @@ body {
 }
 
 .site-nav {
-  background: var(--clr-nav-bg);
+  background: linear-gradient(135deg, #3a4556, #4a5568, #5a6a7a);
 }
 
 .site-nav ul {
@@ -74,14 +97,14 @@ body {
 .site-nav a {
   display: block;
   padding: 12px 16px;
-  color: #d7e3f4;
+  color: #f8fafc;
   font-weight: 500;
   border-radius: 4px;
   transition: background 0.25s ease, color 0.25s ease;
 }
 
 .site-nav a:hover {
-  background: var(--clr-primary);
+  background: #64748b;
   color: #fff;
 }
 
@@ -93,7 +116,7 @@ body {
 }
 
 .sidebar {
-  background: var(--clr-card);
+  background: linear-gradient(180deg, #b0bec5, #cfd8dc);
   padding: 24px;
   border-right: 1px solid var(--clr-border);
 }
@@ -102,7 +125,36 @@ body {
   text-align: center;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--clr-border);
-  margin-bottom: 16px;
+}
+
+.sidebar-nav {
+  margin-top: 16px;
+}
+
+.sidebar-nav .nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #edf1f5, #e2e8f0);
+  color: var(--clr-text);
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.sidebar-link:hover,
+.sidebar-link:active {
+  background: linear-gradient(135deg, #3a4556, #5a6a7a);
+  color: #ffffff;
+  border-left-color: #7dd3fc;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(58, 69, 86, 0.3);
 }
 
 .avatar {
@@ -149,11 +201,11 @@ body {
 }
 
 .content-block {
-  background: var(--clr-card);
+  background: linear-gradient(145deg, #ffffff, #f0f4f8);
   border-radius: 8px;
   padding: 24px;
   margin-bottom: 24px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .content-block h2 {
@@ -178,16 +230,28 @@ body {
   animation: fadeInUp 0.6s ease-out both;
 }
 
-.fade-in:nth-child(2) { animation-delay: 0.1s; }
-.fade-in:nth-child(3) { animation-delay: 0.25s; }
-.fade-in:nth-child(4) { animation-delay: 0.4s; }
-.fade-in:nth-child(5) { animation-delay: 0.55s; }
+.fade-in:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.fade-in:nth-child(3) {
+  animation-delay: 0.25s;
+}
+
+.fade-in:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.fade-in:nth-child(5) {
+  animation-delay: 0.55s;
+}
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -202,7 +266,7 @@ body {
 }
 
 .thumb-card {
-  background: #f8fafc;
+  background: linear-gradient(145deg, #ffffff, #edf1f5);
   border: 1px solid var(--clr-border);
   border-radius: 8px;
   padding: 12px;
@@ -212,12 +276,12 @@ body {
 
 .thumb-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
 .thumb-img {
   width: 100%;
-  height: 90px;
+  height: 140px;
   border-radius: 6px;
   margin-bottom: 10px;
   display: flex;
@@ -230,10 +294,21 @@ body {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.thumb-1 { background: linear-gradient(135deg, #667eea, #764ba2); }
-.thumb-2 { background: linear-gradient(135deg, #22c1c3, #fdbb2d); }
-.thumb-3 { background: linear-gradient(135deg, #ff758c, #ff7eb3); }
-.thumb-4 { background: linear-gradient(135deg, #43cea2, #185a9d); }
+.thumb-1 {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.thumb-2 {
+  background: linear-gradient(135deg, #22c1c3, #fdbb2d);
+}
+
+.thumb-3 {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+}
+
+.thumb-4 {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+}
 
 .skill-item {
   margin-bottom: 18px;
@@ -272,7 +347,7 @@ body {
 }
 
 .site-footer {
-  background: var(--clr-nav-bg);
+  background: linear-gradient(135deg, #3a4556, #4a5568, #5a6a7a);
   color: var(--clr-text-light);
   padding: 16px 0;
 }
@@ -293,8 +368,13 @@ body {
 }
 
 @keyframes run-text {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 .copyright {
@@ -324,10 +404,20 @@ body {
 }
 
 @media (max-width: 480px) {
-  .site-header { padding: 20px; }
-  .site-header h1 { font-size: 1.5rem; }
-  .main-content, .sidebar { padding: 16px; }
+  .site-header {
+    padding: 20px;
+  }
+
+  .site-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .main-content,
+  .sidebar {
+    padding: 16px;
+  }
+
   .thumbnail-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }
